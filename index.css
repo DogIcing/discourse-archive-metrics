@@ -1,0 +1,181 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.options p {
+    font-size: 1.2rem;
+}
+
+.dataset-container {
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.dataset {
+    background-color: #a9a9a9;
+    cursor: pointer;
+    padding: 7px;
+    text-align: center;
+}
+
+.dataset:not(:last-child) {
+    border-right: 1px solid #222;
+}
+
+input[type=checkbox]:checked+.dataset {
+    background-color: #adebb3;
+}
+
+.chart-container {
+    width: 100%;
+    height: 80vh;
+}
+
+/*  yes this is a boostrap classname */
+.d-none {
+    display: none !important;
+}
+
+.bold {
+    font-weight: 500;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 500;
+    margin-top: 2rem;
+    margin-bottom: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    line-height: 1.5rem;
+}
+
+a {
+    color: #000;
+    text-decoration: underline;
+}
+
+.dropzone input[type=file] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.dropzone {
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 20px 0 20px;
+    border: 2px solid #222;
+    border-radius: 15px;
+    position: relative;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.backdrop i {
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: #adebb3;
+}
+
+.title {
+    text-align: center;
+    margin: 0 0 1rem 0;
+}
+
+#frequency {
+    width: 8ch !important;
+    height: 1rem;
+    font-size: 1rem;
+    border-width: 0 0 1px 0;
+}
+
+@media only screen and (min-width: 768px) {
+    .options-container {
+        display: flex;
+        gap: 2rem;
+    }
+}
+
+.all-time {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+    .all-time {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .all-time {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .all-time {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+.all-time .stat {
+    border-radius: 1rem;
+    background: #d4d4d4;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.all-time .stat .num {
+    font-size: 3rem;
+    font-weight: 300;
+}

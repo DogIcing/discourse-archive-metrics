@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discourse Archive Metrics</title>
+    <link href="./index.css" rel="stylesheet" />
+</head>
+
+<body>
+    <h1 class="title">Discourse User Archive Metrics</h1>
+
+    <div class="dropzone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+        <input type="file" id="fileUpload">
+        <p>Click here or drop a file to begin.</p>
+    </div>
+
+    <div class="options-container">
+        <div class="options d-none">
+            <p>Display:</p>
+            <div class="dataset-container">
+                <input type="checkbox" data-dataset-id="likes" id="check_likes" checked />
+                <label class="dataset" for="check_likes">Likes</label>
+
+                <input type="checkbox" data-dataset-id="visits" id="check_visits" checked />
+                <label class="dataset" for="check_visits">Days Visited</label>
+
+                <input type="checkbox" data-dataset-id="posts" id="check_posts" checked />
+                <label class="dataset" for="check_posts">Posts</label>
+
+                <input type="checkbox" data-dataset-id="time_read" id="time_read" checked />
+                <label class="dataset" for="time_read">Time Read</label>
+
+                <input type="checkbox" data-dataset-id="posts_read" id="posts_read" checked />
+                <label class="dataset" for="posts_read">Posts Read</label>
+            </div>
+        </div>
+
+        <div class="options d-none">
+            <p>Group By Days:</p>
+            <input type="number" placeholder="Days" value="30" id="frequency" />
+        </div>
+    </div>
+
+    <div class="chart-container d-none">
+        <canvas id="chart"></canvas>
+    </div>
+
+    <div class="all-time"></div>
+
+    <div>
+        <h2>FAQs</h2>
+        <ul>
+            <li>
+                <span class="bold">Where is the data processed?</span><br>This web app runs completely on your device -
+                no data is ever sent to the server or shared with anyone.
+            </li>
+            <li>
+                <span class="bold">What does a user archive look like?</span><br>Your user archive should be a .zip file
+                named <code>user_archive-&lt;your username + numbers&gt;.zip</code>
+            </li>
+            <li>
+                <span class="bold">How do I filter the results?</span><br>After uploading your archive, you'll find a
+                list of metrics above the chart. Click on each one to show/hide it.
+            </li>
+            <li>
+                <span class="bold">The chart doesn't load!</span><br>For large archives, parsing the data could take a
+                while. To improve the performance you could increase the time period or deselect some metrics.
+            </li>
+            <li>
+                <span class="bold">Compatability</span><br>This should work for all discourse user archives.
+            </li>
+        </ul>
+
+        <h2>Understanding the Data</h2>
+        <ul>
+            <li>
+                <span class="bold">Likes:</span>&nbsp;The amount of likes <span class="underline">given</span> during
+                the time period
+            </li>
+            <li>
+                <span class="bold">Days Visited:</span>&nbsp;How many unique days you logged in during the time period.
+            </li>
+            <li>
+                <span class="bold">Posts:</span>&nbsp;The count of posts/replies you sent during the time period.
+            </li>
+            <li>
+                <span class="bold">Time Read:</span>&nbsp;The time spent <span class="underline">reading
+                    posts/replies</span> during the time period in seconds. This does not reflect the time spent
+                online/active.
+            </li>
+            <li>
+                <span class="bold">Posts Read:</span>&nbsp;The number of posts/replies you read in the time period.
+            </li>
+        </ul>
+    </div>
+
+    <div class="backdrop d-none">
+        <i>Loading...</i>
+    </div>
+
+    <footer>
+        Yes I know this page is ugly, but it gets the job done. I'm a backend dev who rarely touches frontend without a
+        UI framework, let alone static css.
+        <br>
+        Built by DogIcing&nbsp;|&nbsp;<a href="https://github.com/dogicing" target="_blank">Github</a>&nbsp;|&nbsp;<a
+            href="https://discord.com/users/1186265645604671601" target="_blank">Discord</a>
+        <br>
+        Using <a href="https://github.com/chartjs/Chart.js" target="_blank">Chart.JS</a>&nbsp;&amp;&nbsp;<a
+            href="https://github.com/gildas-lormeau/zip.js" target="_blank">Zip.JS</a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/csv-js@1.0.0/csv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+    <script src="./dragdrop.js"></script>
+    <script src="./main.js" type="module"></script>
+</body>
+
+</html>
