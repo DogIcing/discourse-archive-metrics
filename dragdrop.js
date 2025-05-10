@@ -3,6 +3,7 @@ function dropHandler(evt) {
     if (evt.dataTransfer.files[0].name.endsWith(".zip")) {
         dT.items.add(evt.dataTransfer.files[0]);
         document.querySelector("#fileUpload").files = dT.files;
+        document.querySelector("#fileUpload").dispatchEvent(new Event("change"));
     }
     evt.preventDefault();
 }
