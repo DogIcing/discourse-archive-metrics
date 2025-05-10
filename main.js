@@ -77,7 +77,7 @@ function refresh() {
 
 
 async function init() {
-    Array.from(document.querySelectorAll(".chart-container, .options, .backdrop")).map(x => x.classList.remove("d-none"));
+    Array.from(document.querySelectorAll(".chart-container, .options, .backdrop, .best-posts-container")).map(x => x.classList.remove("d-none"));
     document.querySelector(".dropzone").classList.add("d-none");
 
     if (file) {
@@ -141,8 +141,24 @@ async function init() {
             const dataset = new Array(groups.length).fill(0);
             let total = 0;
 
-            console.log(datasetConfig.name + " : " + table.length)
-            console.log(table)
+            if (datasetConfig.id === "posts") {
+                const sortedPosts = table
+                    .slice(0) // Dont modify original array
+                    .sort((a,b) => b[headerRow.indexOf("like_count")] - a[headerRow.indexOf("like_count")])
+                    .slice(0, 5);
+
+                document.querySelector(".best-posts").innerHTML += sortedPosts.map(post => `
+                    <details>
+                        <summary>${(new Date(post[headerRow.indexOf("created_at")])).toLocaleDateString('en-GB', {
+                            day: 'numeric', month: 'short', year: 'numeric'
+                        })}: ${post[headerRow.indexOf("like_count")]} Likes</summary>
+                        <div class="top-post-content">
+                            ${post[headerRow.indexOf("post_cooked")]}
+                        </div>
+                    </details>
+                `).join("\n");
+            }
+
             table.forEach(row => {
                 const created_at = new Date(row[headerRow.indexOf(datasetConfig.group_by)]);
                 const group = groups.find(x => x.start <= created_at && x.end > created_at);

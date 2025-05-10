@@ -179,3 +179,16 @@ a {
     font-size: 3rem;
     font-weight: 300;
 }
+
+.top-post-content {
+    padding-left: 20px;
+}
+
+.best-posts {
+    margin-top: 0.7rem;
+}
+
+summary {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
